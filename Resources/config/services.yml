@@ -1,0 +1,17 @@
+parameters:
+    ezpublish.fieldType.owhoneypot.class: 'Ow\Bundle\OwHoneypotBundle\FieldType\OwHoneypot\Type'
+    ezpublish.fieldType.owhoneypot.converter.class: 'Ow\Bundle\OwHoneypotBundle\Persistence\Legacy\Content\FieldValue\Converter\OwHoneypot'
+    doctrine.orm.entity_manager: 'Doctrine\ORM\EntityManager'
+
+services:
+    ezpublish.fieldType.owhoneypot:
+        class: %ezpublish.fieldType.owhoneypot.class%
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: owhoneypot}
+
+    ezpublish.fieldType.owhoneypot.converter:
+        class: %ezpublish.fieldType.owhoneypot.converter.class%
+        arguments: [@ezpublish.api.storage_engine.legacy.dbhandler, @service_container]
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: owhoneypot}

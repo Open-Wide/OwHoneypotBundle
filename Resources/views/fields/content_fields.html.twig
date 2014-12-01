@@ -1,0 +1,7 @@
+{% extends 'EzPublishCoreBundle::content_fields.html.twig' %}
+
+{% block owhoneypot %}
+    {% spaceless %}
+        {{ render( controller( "ez_content:viewContent", {'contentId': field.value, 'viewType': 'embed', 'noLayout': 1} ) ) }}
+    {% endspaceless %}
+{% endblock %}
